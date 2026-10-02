@@ -38,6 +38,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 활용: 낯선 코드 인수, AI가 생성한 PR 리뷰, 긴 에러 로그 읽기, 모듈 인계.
 
+**자연스러운 문장 점검([Humanizer-zh](https://github.com/bounce12340/Humanizer-zh) 참고)**: 코드를 확인한 뒤 이해를 방해하는 빈 도입, 반복, 틀에 박힌 표현만 다듬습니다. 근거 태그, 불확실성, 필요한 기술 용어는 남깁니다. 다른 스킬은 선택 사항이며 AI 글 감지 또는 감지 회피를 보장하지 않습니다.
+
 ## 사용해 보기
 
 ```text
@@ -96,7 +98,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # 스킬 본체(지침만 포함)
 ├── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
-└── references/writing-rules.md     # ASD-STE100을 바탕으로 한 작성 규칙
+├── references/writing-rules.md     # ASD-STE100을 바탕으로 한 작성 규칙
+└── references/natural-writing.md   # Humanizer-zh를 참고한 자연스러운 문장 점검
 examples/                          # 인터랙티브 다이어그램(5개 언어)과 예시
 CHANGELOG.md                       # 변경 이력. vX.Y.Z 태그를 푸시하면 Release 자동 게시
 scripts/validate.py                # 형식·링크·근거 앵커·비밀 정보 검사(CI)

@@ -38,6 +38,8 @@ It picks the lightest format that works — text, Mermaid diagram, self-containe
 
 Good for: onboarding onto unfamiliar code, reviewing AI-generated PRs, reading long error logs, and handing over modules.
 
+**Natural-writing pass (inspired by [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh))**: after checking the code, remove filler, repeated claims, and template wording only where they hinder understanding. Keep evidence tags, uncertainty, technical terms, and useful diagrams. The other skill is optional; this is not an AI detector or a promise to pass one.
+
 ## Try it
 
 ```text
@@ -96,7 +98,8 @@ Restart the agent if the skill does not appear. Any other Agent Skills–compati
 skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
 ├── references/output-template.md  # response skeleton, evidence tags, Mermaid template
-└── references/writing-rules.md     # writing rules adapted from ASD-STE100
+├── references/writing-rules.md     # writing rules adapted from ASD-STE100
+└── references/natural-writing.md   # natural-writing pass inspired by Humanizer-zh
 examples/                          # interactive diagram (5 languages) + examples
 CHANGELOG.md                       # version history; tags vX.Y.Z publish a Release
 scripts/validate.py                # spec, links, evidence anchors, secrets (CI)

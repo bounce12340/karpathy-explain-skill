@@ -38,6 +38,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 适合：接手陌生代码、审查 AI 生成的 PR、阅读很长的错误日志、交接模块。
 
+**自然文字检查（借鉴 [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh)）**：先核对代码，再修改空泛铺垫、重复或妨碍理解的模板句。保留证据标记、未知点和必要术语。另一项技能可选装；这不是 AI 文本检测器，也不保证通过检测器。
+
 ## 试用
 
 ```text
@@ -96,7 +98,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
 ├── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
-└── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
+├── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
+└── references/natural-writing.md   # 借鉴 Humanizer-zh 的自然文字检查
 examples/                          # 交互图解（五语）与示例
 CHANGELOG.md                       # 版本记录；推送 vX.Y.Z 标签会自动发布 Release
 scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）

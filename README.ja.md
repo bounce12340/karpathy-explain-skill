@@ -38,6 +38,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 用途：見知らぬコードの引き継ぎ、AI が生成した PR のレビュー、長いエラーログの読解、モジュールの引き継ぎ。
 
+**自然な文章への最終チェック（[Humanizer-zh](https://github.com/bounce12340/Humanizer-zh) を参考）**：コードを確認してから、理解を妨げる空疎な前置き、重複、型にはまった表現だけを直します。根拠タグ、不確実性、必要な用語は残します。別スキルの導入は任意です。AI 文書検出器ではなく、検出回避も保証しません。
+
 ## 試す
 
 ```text
@@ -96,7 +98,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # スキル本体（指示文のみ）
 ├── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
-└── references/writing-rules.md     # ASD-STE100 を基にした文章ルール
+├── references/writing-rules.md     # ASD-STE100 を基にした文章ルール
+└── references/natural-writing.md   # Humanizer-zh を参考にした自然な文章の確認
 examples/                          # インタラクティブ図解（5 言語）と例
 CHANGELOG.md                       # 変更履歴。vX.Y.Z タグで Release を自動公開
 scripts/validate.py                # 形式・リンク・根拠アンカー・機密情報チェック（CI）

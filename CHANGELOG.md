@@ -2,6 +2,11 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
+## 1.4.0 — 2026-10-03
+
+- Added an optional natural-writing pass for engineering explanations, inspired by [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh): edit filler, repetition, and template wording after source verification. Preserve evidence, uncertainty, technical terms, and useful structure.
+- Added `references/natural-writing.md` and updated all five READMEs. Humanizer-zh is not bundled or required; this does not detect AI authorship or promise detector evasion.
+
 ## 1.3.1 — 2026-10-03
 
 - Where an analogy breaks must now be checked against the code: cite the specific behavior with `[confirmed path:line]` and quote the key part of that line. Prefer differences that would lead a reader to write wrong code (authorization, data loss, error handling, edge cases). If no matching code is found, mark it `[inferred]`.
