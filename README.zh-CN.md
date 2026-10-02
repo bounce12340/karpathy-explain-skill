@@ -38,6 +38,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 适合：接手陌生代码、审查 AI 生成的 PR、阅读很长的错误日志、交接模块。
 
+**自然文字检查（借鉴 [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh)）**：先核对代码，再修改空泛铺垫、重复或妨碍理解的模板句。保留证据标记、未知点和必要术语。另一项技能可选装；这不是 AI 文本检测器，也不保证通过检测器。
+
 ## 试用
 
 ```text
@@ -96,7 +98,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
 ├── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
-└── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
+├── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
+└── references/natural-writing.md   # 借鉴 Humanizer-zh 的自然文字检查
 examples/                          # 交互图解（五语）与示例
 CHANGELOG.md                       # 版本记录；推送 vX.Y.Z 标签会自动发布 Release
 scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）
@@ -112,7 +115,7 @@ python3 -m unittest discover -s tests
 
 ## 状态与限制
 
-- 安装路径依据各家官方文档编写；CI 会验证 `npx skills add . --list` 能找到技能。尚未在每家 agent 实机测试，欢迎反馈问题。
+- 安装路径依据各家官方文档编写；CI 会验证 `npx skills add . --list` 能找到技能。隔离 iSH/aarch64 使用 DeepSeek 兼容服务的实测结果：Claude Code **v1.3.0 通过**（调用 Skill 工具、读取源码并完成快速讲解；较新版本未重测）；Codex CLI 0.160.0 **v1.3.1 受阻**（技能安装成功，但代理与直接 API 均无法完成模型回合，没有成功使用技能的证据）。Hermes Agent 按用户要求跳过。
 - 它不会让你不用读代码，而是告诉你**先读哪里**、**哪些还是猜的**。
 
 ## 许可

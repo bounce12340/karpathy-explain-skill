@@ -2,11 +2,16 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
-## 1.3.2 — 2026-10-03
+## 1.4.1 — 2026-10-03
 
 - Writing rule 7: put steps in a numbered list, one instruction per line (20 English words max), and keep instructions apart from descriptions.
 - Diagrams: use an ASCII diagram where Mermaid does not render (terminals such as Claude Code and Codex). Also draw one when a process or structure has more than 3 steps or parts. Template added to `references/output-template.md`.
 - "Explain in HTML" (「用 HTML 解釋」) is now an explicit trigger: convert the explanation into a single-file interactive HTML page without asking.
+
+## 1.4.0 — 2026-10-03
+
+- Added an optional natural-writing pass for engineering explanations, inspired by [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh): edit filler, repetition, and template wording after source verification. Preserve evidence, uncertainty, technical terms, and useful structure.
+- Added `references/natural-writing.md` and updated all five READMEs. Humanizer-zh is not bundled or required; this does not detect AI authorship or promise detector evasion.
 
 ## 1.3.1 — 2026-10-03
 

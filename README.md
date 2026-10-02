@@ -38,6 +38,8 @@ It picks the lightest format that works — text, a Mermaid diagram (or an ASCII
 
 Good for: onboarding onto unfamiliar code, reviewing AI-generated PRs, reading long error logs, and handing over modules.
 
+**Natural-writing pass (inspired by [Humanizer-zh](https://github.com/bounce12340/Humanizer-zh))**: after checking the code, remove filler, repeated claims, and template wording only where they hinder understanding. Keep evidence tags, uncertainty, technical terms, and useful diagrams. The other skill is optional; this is not an AI detector or a promise to pass one.
+
 ## Try it
 
 ```text
@@ -96,7 +98,8 @@ Restart the agent if the skill does not appear. Any other Agent Skills–compati
 skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
 ├── references/output-template.md  # response skeleton, evidence tags, Mermaid template
-└── references/writing-rules.md     # writing rules adapted from ASD-STE100
+├── references/writing-rules.md     # writing rules adapted from ASD-STE100
+└── references/natural-writing.md   # natural-writing pass inspired by Humanizer-zh
 examples/                          # interactive diagram (5 languages) + examples
 CHANGELOG.md                       # version history; tags vX.Y.Z publish a Release
 scripts/validate.py                # spec, links, evidence anchors, secrets (CI)
@@ -112,7 +115,7 @@ python3 -m unittest discover -s tests
 
 ## Status and limits
 
-- Install paths follow each agent's official docs; `npx skills add . --list` is verified in CI. Not yet hands-on tested inside every agent — issues welcome.
+- Install paths follow each agent's official docs; `npx skills add . --list` is verified in CI. Hands-on status (isolated iSH/aarch64 with a DeepSeek-compatible provider): Claude Code **PASS on v1.3.0** — invoked the `Skill` tool, read the source, and produced the quick explanation; later versions are not yet retested. Codex CLI 0.160.0 **BLOCKED on v1.3.1** — installation succeeded, but both proxy and direct API attempts failed to finish a model turn, so there is no completed skill-use evidence. Hermes Agent was skipped. Detailed evidence is kept locally and is not published because test transcripts may include private data.
 - It does not replace reading the code. It tells you **where to read first** and **what is still a guess**.
 
 ## Attribution and license

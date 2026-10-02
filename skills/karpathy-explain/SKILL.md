@@ -1,10 +1,10 @@
 ---
 name: karpathy-explain
-description: "Explain code, architecture, bugs, PRs, logs, and technical docs in layered, evidence-backed form (30-second ELI5 → 3-minute data flow → source-level deep dive), choosing text, diagram, interactive HTML, or video. Use for onboarding, taking over unfamiliar code, reviewing AI-generated code, or when asked for a Karpathy-style / ELI5 explanation. 把程式碼與技術文件轉成好懂又可驗證的分層解說；用於接手程式、審查 AI 產出、ELI5 解說。"
+description: "Explain code, architecture, bugs, PRs, logs, and technical docs in layered, evidence-backed form (30-second ELI5 → data flow → source-level deep dive); choose text, diagram, interactive HTML, or video. Use for onboarding, unfamiliar code, AI-generated code reviews, Karpathy-style/ELI5 explanations, or a natural-language polish of engineering explanations without losing evidence. 把技術內容分層解說，或在不刪證據下潤飾工程說明、減少空話和模板語氣。"
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.3.2"
+  version: "1.4.1"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -59,6 +59,10 @@ metadata:
 7. **步驟用編號清單**：操作步驟一步一行，英文指示句不超過 20 詞。描述與指示分開寫，不混在同一段。
 
 這是改編，不是 STE 合規；STE 受控字典只適用英文，不套用在中文回覆。
+
+## 自然文字檢查（借鏡 Humanizer-zh）
+
+先完成來源查證與分層解說，再按 [references/natural-writing.md](references/natural-writing.md) 檢查文字：只修空泛鋪墊、重複與真正妨礙理解的模板句。保留事實、引用、證據標記、否定、條件及確定程度；不為了「不像 AI」強行刪除有用的比喻、列點或技術詞。繁中面向台灣讀者時用自然台灣用語；其他語言跟隨使用者。`humanizer-zh` 若已安裝且使用者想進一步潤飾，可在查證後選用，並非本技能的必要依賴。此步不判定作者身分，也不保證通過任何 AI 偵測器。
 
 ## 選呈現形式（逐級增強，不必每次全做）
 
