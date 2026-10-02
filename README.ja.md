@@ -2,71 +2,103 @@
 
 [English](README.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-コード、アーキテクチャ、バグ、PR、技術文書を説明するための再利用可能な [Agent Skill](https://agentskills.io/) です。**理解のハードルを下げつつ、エンジニアの判断に必要な根拠は残します。** [Andrej Karpathy の 2026 年 10 月 2 日の投稿](https://x.com/karpathy/status/2105819303471976479)（明快な文章 → 図解 → インタラクティブな HTML → 任意の解説動画）に着想を得ています。また、相手のレベルに合わせつつ見下さない ELI5 的な説明方法を取り入れています。
+[![validate](https://github.com/bounce12340/karpathy-explain-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/bounce12340/karpathy-explain-skill/actions/workflows/validate.yml) ![license](https://img.shields.io/badge/license-MIT-blue)
+
+> AI がコードを書く速さは、私たちが理解する速さを超えました。このスキルは理解を助けます——根拠以上のことを知っているふりはせずに。
+
+コード、アーキテクチャ、バグ、PR、ログ、技術文書を説明するための再利用可能な [Agent Skill](https://agentskills.io/) です。[Andrej Karpathy の 2026 年 10 月 2 日の投稿](https://x.com/karpathy/status/2105819303471976479)（明快な文章 → 図解 → インタラクティブ HTML → 任意の解説動画）に着想を得て、読み手に合わせつつ見下さない ELI5 的な説明を組み合わせています。
 
 **独立したプロジェクトであり、Karpathy 氏による作成・推奨・保守ではありません。理解時間の短縮を実測したとは主張しません。**
 
+## ワンライナーでインストール
+
+```bash
+npx skills add bounce12340/karpathy-explain-skill
+```
+
+[`skills` CLI](https://github.com/vercel-labs/skills) がインストール先の agent を尋ねます。`-a claude-code`、`-a codex`、`-a hermes-agent` で直接指定でき、`-g` でユーザー全体にインストールします。手動の手順は[下記](#手動インストール)を参照してください。
+
 ## できること
 
-1. **根拠を確認**：提供されたソースを読み、コード上の事実、テスト結果、推測、不明点を区別します。可能ならファイル／行、関数、ログ、文書の箇所を示します。
-2. **段階的に説明**：30 秒の要約と例え → 3 分の成功／失敗データフロー → 実装の詳細と検証手順。例えが当てはまらない点も示します。
-3. **最小限で効果的な形式を選択**：文章、図解、自己完結型のインタラクティブ HTML。役立つ場合のみ絵コンテや動画を作成します。
-4. **リスクを残す**：認可、データ消失、セキュリティ、競合状態、性能、不明点を単純化で消しません。
+| レイヤー | 得られるもの |
+|---|---|
+| ⏱ 30 秒 | 一文の要約、身近な例え、そして**例えが成り立たない点** |
+| ⏱ 3 分 | 実際のデータフロー：成功経路、失敗経路、よくある誤解 |
+| 🔍 詳細 | 読むべきファイルと行、境界とトレードオフ、検証方法 |
 
-[インタラクティブな機能図](examples/index.html)と[3 つの合成例](examples/examples.md)（繁体字中国語）をご覧ください。スキルはユーザーの言語で回答します。
+重要な主張にはすべて**根拠タグ**が付き、どこまで信頼できるか一目で分かります：
 
-## インストール
+`[確認済み src/auth.ts:42]` · `[テスト済み]` · `[推測]` · `[不明]`
 
-スキル本体は [`skills/karpathy-explain/SKILL.md`](skills/karpathy-explain/SKILL.md) です。まず clone します。
+文章、Mermaid 図、自己完結型のインタラクティブ HTML から最小限で効果的な形式を選び、動画の絵コンテは依頼された場合のみ作成します。**クイックモード**では 30 秒の要約、次に見る場所、未確認事項だけを返します。
+
+用途：見知らぬコードの引き継ぎ、AI が生成した PR のレビュー、長いエラーログの読解、モジュールの引き継ぎ。
+
+## 試す
+
+```text
+karpathy-explain を使って、このモジュールを引き継ぐエンジニアに <パス> を説明してください。
+30 秒の要約を示し、成功と失敗の経路を図示し、
+確認すべきソース位置を 3 つと未検証の前提を挙げてください。
+```
+
+```text
+karpathy-explain のクイックモードで：この PR はどんな挙動を変え、何がリスクですか？
+```
+
+スキルはあなたの言語で回答します。ソースがない場合は、検証済みの説明ではなく仮の例であることを明示します。
+
+[インタラクティブな機能図](examples/index.html)と[3 つの合成例](examples/examples.md)（繁体字中国語）もご覧ください。
+
+## 手動インストール
+
+まず clone します：
 
 ```bash
 git clone https://github.com/bounce12340/karpathy-explain-skill.git
 cd karpathy-explain-skill
 ```
 
-### Claude Code
+| Agent | ユーザー全体 | プロジェクト単位 | 呼び出し |
+|---|---|---|---|
+| [Claude Code](https://code.claude.com/docs/en/skills) | `~/.claude/skills/` | `.claude/skills/` | `/karpathy-explain` |
+| [Codex](https://developers.openai.com/codex/skills) | `~/.agents/skills/` | `.agents/skills/` | `/skills` または `$karpathy-explain` |
+| [Hermes Agent](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) | `~/.hermes/skills/` | `.hermes/skills/` | `/karpathy-explain` |
 
-個人用（このマシンのすべてのプロジェクト）：
+Hermes のプロジェクト単位のスキルは、リポジトリを信頼した後に読み込まれます：`hermes skills trust`。
 
-```bash
-mkdir -p ~/.claude/skills
-cp -R skills/karpathy-explain ~/.claude/skills/
-```
-
-プロジェクト用（チームで共有するならコミット）：`<repo>/.claude/skills/karpathy-explain/` にコピーします。`/karpathy-explain` で呼び出すか、自然な言葉で解説を依頼してください。ドキュメント：[Skills](https://code.claude.com/docs/en/skills)。
-
-### Codex
-
-ユーザー用：
+フォルダ全体（`references/` を含む）をコピーします：
 
 ```bash
-mkdir -p ~/.agents/skills
-cp -R skills/karpathy-explain ~/.agents/skills/
+mkdir -p ~/.claude/skills && cp -R skills/karpathy-explain ~/.claude/skills/
 ```
 
-リポジトリ用：`<repo>/.agents/skills/karpathy-explain/` にコピーします。Codex CLI または IDE 拡張で `/skills` を実行するか、`$karpathy-explain` と入力します。表示されない場合は Codex を再起動してください。ドキュメント：[Build skills](https://developers.openai.com/codex/skills)。
-
-### Hermes Agent
-
-GitHub からインストール（Hermes のセキュリティスキャン付き）：
+**Hermes Agent** は GitHub から直接インストールすることもできます（セキュリティスキャン付き）：
 
 ```bash
 hermes skills inspect bounce12340/karpathy-explain-skill/skills/karpathy-explain
 hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 ```
 
-手動の場合：`~/.hermes/skills/engineering/karpathy-explain/` にコピーします。複数ツールで共有するには、`~/.hermes/config.yaml` の `skills.external_dirs` に `~/.agents/skills` を追加します。ドキュメント：[Skills System](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)。
+スキルが表示されない場合は agent を再起動してください。その他の Agent Skills 対応ツールでは、`skills/karpathy-explain/` をスキルディレクトリにコピーしてください。
 
-### その他の Agent Skills 対応ツール
+## ファイル構成
 
-`skills/karpathy-explain/` を各ツールのスキルディレクトリにコピーしてください。指示文のみのスキルで、API キー、npm パッケージ、スクリプト、ネットワークは不要です。`eli5` や `frontend-design` スキルは補助として使えますが、必須ではありません。
+```text
+skills/karpathy-explain/
+├── SKILL.md                       # スキル本体（指示文のみ）
+└── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
+examples/                          # インタラクティブ図解と合成例
+scripts/validate.py                # 形式・リンク・機密情報チェック（CI で実行）
+```
 
-## 試す
+PR を出す前に `python3 scripts/validate.py` を実行してください。
 
-> karpathy-explain を使って、`<ソースコードまたは文書のパス>` をこのコンポーネントを引き継ぐエンジニアに説明してください。まず 30 秒の ELI5 風の要約、次に成功と失敗の経路を示し、最後に確認すべきソース位置を 3 つと未検証の前提を挙げてください。日本語で回答してください。
+## 現状と制限
 
-実際のコードでは、ファイル、リポジトリ、ログ、URL を提供してください。ソースがない場合、回答は検証済みではなく仮の例として示されるべきです。
+- インストール手順は各 agent の公式ドキュメントに基づいています。CI で `npx skills add . --list` がスキルを検出できることを確認しています。すべての agent での実機テストはまだです。Issue を歓迎します。
+- コードを読む必要はなくなりません。**どこから読むべきか**、**何がまだ推測か**を教えてくれます。
 
 ## ライセンス
 
-[MIT](LICENSE)。Karpathy 氏の投稿は表現方法の着想元にすぎません。スキルの文章は本プロジェクトで独自に作成し、外部スキルのソースコードは含みません。ユーザーのプロジェクト資料には、そのプロジェクト自身の条件が適用されます。
+[MIT](LICENSE)。表現方法は Karpathy 氏の投稿に着想を得ていますが、スキルの文章は独自に作成したものです。ELI5 は手法として用いており、第三者のスキルコードは含みません。

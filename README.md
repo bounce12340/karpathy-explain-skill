@@ -2,85 +2,103 @@
 
 [English](README.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-A reusable [Agent Skill](https://agentskills.io/) for explaining code, architecture, bugs, PRs, and technical documents while keeping the evidence engineers need. Inspired by [Andrej Karpathy's October 2, 2026 post](https://x.com/karpathy/status/2105819303471976479): clear writing → diagrams → interactive HTML → optional explainer video. It also applies an ELI5-style approach: explain from the reader's level without talking down to them.
+[![validate](https://github.com/bounce12340/karpathy-explain-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/bounce12340/karpathy-explain-skill/actions/workflows/validate.yml) ![license](https://img.shields.io/badge/license-MIT-blue)
 
-**Independent project. Not created, endorsed, or maintained by Andrej Karpathy.** No measured improvement in comprehension time is claimed.
+> AI writes code faster than we can understand it. This skill helps you understand it — without pretending to know more than the evidence shows.
+
+A reusable [Agent Skill](https://agentskills.io/) for explaining code, architecture, bugs, PRs, logs, and technical documents. Inspired by [Andrej Karpathy's October 2, 2026 post](https://x.com/karpathy/status/2105819303471976479): clear writing → diagrams → interactive HTML → optional explainer video, combined with an ELI5 approach that adapts to the reader without talking down to them.
+
+**Independent project — not created, endorsed, or maintained by Andrej Karpathy.** No measured improvement in comprehension time is claimed.
+
+## Quick install
+
+```bash
+npx skills add bounce12340/karpathy-explain-skill
+```
+
+The [`skills` CLI](https://github.com/vercel-labs/skills) asks which agents to install for. Target one directly with `-a claude-code`, `-a codex`, or `-a hermes-agent`; add `-g` for a user-wide install. Manual steps for each agent are [below](#manual-install).
 
 ## What it does
 
-1. **Ground it:** read the supplied source; separate observed code, tested behavior, inference, and unknowns. Cite file/line, function, log, or document section when available.
-2. **Layer it:** 30-second summary and analogy → 3-minute success/failure data flow → implementation details and verification steps. State where the analogy breaks.
-3. **Choose the lightest useful format:** concise text, diagram, self-contained interactive HTML, or optional storyboard/video only when it helps.
-4. **Keep engineering risk visible:** authorization, data loss, security, concurrency, performance, and unknowns are not simplified away.
+| Layer | You get |
+|---|---|
+| ⏱ 30 seconds | One sentence, an everyday analogy, and **where the analogy breaks** |
+| ⏱ 3 minutes | The real data flow: success path, failure path, common misconception |
+| 🔍 Deep dive | Files and lines to read, boundaries and trade-offs, how to verify |
 
-See the [interactive feature diagram](examples/index.html) and [three synthetic examples](examples/examples.md). These demo files are in Traditional Chinese; the skill answers in the user's language.
+Every important claim carries an **evidence tag** so you know what to trust:
 
-## Install
+`[confirmed src/auth.ts:42]` · `[tested]` · `[inferred]` · `[unknown]`
 
-The skill lives at [`skills/karpathy-explain/SKILL.md`](skills/karpathy-explain/SKILL.md). Clone once:
+It picks the lightest format that works — text, Mermaid diagram, self-contained interactive HTML, or a video storyboard only when you ask for one. A **quick mode** returns just the 30-second summary, where to look next, and what's unverified.
+
+Good for: onboarding onto unfamiliar code, reviewing AI-generated PRs, reading long error logs, and handing over modules.
+
+## Try it
+
+```text
+Use karpathy-explain to explain <path> to an engineer taking over this module.
+Give a 30-second summary, draw the success and failure paths,
+then list three source locations to read and any unverified assumptions.
+```
+
+```text
+Use karpathy-explain in quick mode: what behavior does this PR change, and what's risky?
+```
+
+The skill replies in your language. Without source material, it labels the answer as a hypothetical example rather than a verified explanation.
+
+See the [interactive feature diagram](examples/index.html) and [three synthetic examples](examples/examples.md) (Traditional Chinese).
+
+## Manual install
+
+Clone first:
 
 ```bash
 git clone https://github.com/bounce12340/karpathy-explain-skill.git
 cd karpathy-explain-skill
 ```
 
-### Claude Code
+| Agent | User-wide | Per project | Invoke |
+|---|---|---|---|
+| [Claude Code](https://code.claude.com/docs/en/skills) | `~/.claude/skills/` | `.claude/skills/` | `/karpathy-explain` |
+| [Codex](https://developers.openai.com/codex/skills) | `~/.agents/skills/` | `.agents/skills/` | `/skills` or `$karpathy-explain` |
+| [Hermes Agent](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) | `~/.hermes/skills/` | `.hermes/skills/` | `/karpathy-explain` |
 
-Personal install (all projects on this machine):
+Hermes project skills load only after you trust the repo: `hermes skills trust`.
 
-```bash
-mkdir -p ~/.claude/skills
-cp -R skills/karpathy-explain ~/.claude/skills/
-```
-
-Project install (commit it for your team):
-
-```bash
-mkdir -p .claude/skills
-cp -R /path/to/karpathy-explain-skill/skills/karpathy-explain .claude/skills/
-```
-
-Use it with `/karpathy-explain`, or ask naturally for an engineering explanation. Claude Code docs: [Skills](https://code.claude.com/docs/en/skills).
-
-### Codex
-
-User install:
+Copy the whole folder (it includes `references/`):
 
 ```bash
-mkdir -p ~/.agents/skills
-cp -R skills/karpathy-explain ~/.agents/skills/
+mkdir -p ~/.claude/skills && cp -R skills/karpathy-explain ~/.claude/skills/
 ```
 
-Repository install: copy the folder to `<repo>/.agents/skills/karpathy-explain/`. In Codex CLI or the IDE extension, run `/skills` or mention `$karpathy-explain`. Restart Codex if it does not appear. Codex docs: [Build skills](https://developers.openai.com/codex/skills).
-
-### Hermes Agent
-
-Install from GitHub with Hermes's security scan:
+**Hermes Agent** can also install straight from GitHub with its security scan:
 
 ```bash
 hermes skills inspect bounce12340/karpathy-explain-skill/skills/karpathy-explain
 hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 ```
 
-Manual alternative: copy the folder to `~/.hermes/skills/engineering/karpathy-explain/`. For a shared cross-tool directory, add `~/.agents/skills` to `skills.external_dirs` in `~/.hermes/config.yaml`. Hermes docs: [Skills System](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills).
+Restart the agent if the skill does not appear. Any other Agent Skills–compatible tool works the same way: copy `skills/karpathy-explain/` into its skill directory.
 
-### Other Agent Skills-compatible tools
+## Repository layout
 
-Copy `skills/karpathy-explain/` into that tool's skill directory. The skill is instruction-only: no API key, npm package, script, or network access is required. Optional local `eli5` or `frontend-design` skills can complement it but are not dependencies.
+```text
+skills/karpathy-explain/
+├── SKILL.md                       # the skill (instruction-only)
+└── references/output-template.md  # response skeleton, evidence tags, Mermaid template
+examples/                          # interactive diagram + synthetic examples
+scripts/validate.py                # spec, link, and secret checks (run in CI)
+```
 
-## Try it
+Run `python3 scripts/validate.py` before opening a PR.
 
-> Use karpathy-explain to explain `<path to source code or document>` to an engineer taking over this component. Start with a 30-second ELI5-style summary, show the success and failure paths, then list three source locations to inspect and any unverified assumptions. Reply in English.
+## Status and limits
 
-For real code, provide files, a repository, logs, or URLs. Without source material, responses should be labeled hypothetical rather than verified.
-
-## Repository contents
-
-- `skills/karpathy-explain/SKILL.md` — skill instructions (written in Traditional Chinese; replies follow the user's language).
-- `examples/index.html` — offline, keyboard-accessible interactive diagram.
-- `examples/examples.md` — three synthetic examples.
-- `README.*.md` — English, Japanese, Korean, Simplified Chinese, and Traditional Chinese guides.
+- Install paths follow each agent's official docs; `npx skills add . --list` is verified in CI. Not yet hands-on tested inside every agent — issues welcome.
+- It does not replace reading the code. It tells you **where to read first** and **what is still a guess**.
 
 ## Attribution and license
 
-The presentation ladder is inspired by Karpathy's linked post. This skill and wording are independently authored; ELI5 is used as an explanation approach, and no external skill source code is bundled. Content supplied from a user's project remains subject to that project's terms. Licensed under [MIT](LICENSE).
+The presentation ladder is inspired by Karpathy's linked post. The skill text is independently written; ELI5 is used as an approach, and no third-party skill code is bundled. [MIT](LICENSE).
