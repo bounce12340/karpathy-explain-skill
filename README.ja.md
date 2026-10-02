@@ -52,9 +52,9 @@ karpathy-explain のクイックモードで：この PR はどんな挙動を�
 
 **例**
 
-- [オンラインのインタラクティブ図解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html)：ブラウザで直接開けます（繁体字中国語）。
+- [オンラインのインタラクティブ図解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html?lang=ja)：ブラウザで直接開けます。英語・繁体字・日本語・韓国語・簡体字を切り替え可能。
 - [実例ウォークスルー](examples/real-walkthrough.md)：このリポジトリの検証スクリプトにスキルを適用した例。行番号はすべて CI で自動チェックされます（英語）。
-- [3 つの合成例](examples/examples.md)：API 403、消える下書き、CI の結果不一致（繁体字中国語）。
+- [3 つの合成例](examples/examples.en.md)：API 403、消える下書き、CI の結果不一致（英語。[繁体字中国語版](examples/examples.md)もあります）。
 
 ## 手動インストール
 
@@ -94,7 +94,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # スキル本体（指示文のみ）
 └── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
-examples/                          # インタラクティブ図解と合成例
+examples/                          # インタラクティブ図解（5 言語）と例
+CHANGELOG.md                       # 変更履歴。vX.Y.Z タグで Release を自動公開
 scripts/validate.py                # 形式・リンク・根拠アンカー・機密情報チェック（CI）
 tests/                             # 検証スクリプトの回帰テスト
 ```

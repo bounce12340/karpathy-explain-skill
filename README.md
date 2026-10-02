@@ -52,9 +52,9 @@ The skill replies in your language. Without source material, it labels the answe
 
 **Examples**
 
-- [Live interactive diagram](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html) — opens in the browser (Traditional Chinese).
+- [Live interactive diagram](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html?lang=en) — opens in the browser; switch between English, 繁體中文, 日本語, 한국어, and 简体中文.
 - [Real walkthrough](examples/real-walkthrough.md) — the skill applied to this repo's own validator. Every line reference is checked by CI.
-- [Three synthetic examples](examples/examples.md) — API 403, disappearing drafts, mixed CI results (Traditional Chinese).
+- [Three synthetic examples](examples/examples.en.md) — API 403, disappearing drafts, mixed CI results ([繁體中文](examples/examples.md)).
 
 ## Manual install
 
@@ -94,7 +94,8 @@ Restart the agent if the skill does not appear. Any other Agent Skills–compati
 skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
 └── references/output-template.md  # response skeleton, evidence tags, Mermaid template
-examples/                          # interactive diagram + synthetic examples
+examples/                          # interactive diagram (5 languages) + examples
+CHANGELOG.md                       # version history; tags vX.Y.Z publish a Release
 scripts/validate.py                # spec, links, evidence anchors, secrets (CI)
 tests/                             # validator regression tests
 ```

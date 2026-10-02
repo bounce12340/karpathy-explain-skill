@@ -52,9 +52,9 @@ karpathy-explain 빠른 모드로: 이 PR은 어떤 동작을 바꾸고, 무엇�
 
 **예시**
 
-- [온라인 인터랙티브 다이어그램](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html): 브라우저에서 바로 열립니다(번체 중국어).
+- [온라인 인터랙티브 다이어그램](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html?lang=ko): 브라우저에서 바로 열리며 영어·번체·일본어·한국어·간체로 전환할 수 있습니다.
 - [실제 워크스루](examples/real-walkthrough.md): 이 저장소의 검증 스크립트에 스킬을 적용한 예시. 모든 줄 번호를 CI가 자동 검사합니다(영어).
-- [세 가지 합성 예시](examples/examples.md): API 403, 사라지는 초안, 엇갈린 CI 결과(번체 중국어).
+- [세 가지 합성 예시](examples/examples.en.md): API 403, 사라지는 초안, 엇갈린 CI 결과(영어, [번체 중국어판](examples/examples.md)도 있음).
 
 ## 수동 설치
 
@@ -94,7 +94,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # 스킬 본체(지침만 포함)
 └── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
-examples/                          # 인터랙티브 다이어그램과 합성 예시
+examples/                          # 인터랙티브 다이어그램(5개 언어)과 예시
+CHANGELOG.md                       # 변경 이력. vX.Y.Z 태그를 푸시하면 Release 자동 게시
 scripts/validate.py                # 형식·링크·근거 앵커·비밀 정보 검사(CI)
 tests/                             # 검증 스크립트 회귀 테스트
 ```

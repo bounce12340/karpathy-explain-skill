@@ -52,9 +52,9 @@ npx skills add bounce12340/karpathy-explain-skill
 
 **示例**
 
-- [在线交互图解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html)：直接在浏览器打开（繁体中文）。
+- [在线交互图解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html?lang=zh-Hans)：直接在浏览器打开，可切换英文、繁中、日文、韩文、简中。
 - [真实演练](examples/real-walkthrough.md)：把技能用在本仓库的验证脚本上，每个行号都由 CI 自动检查（英文）。
-- [三个合成示例](examples/examples.md)：API 403、草稿消失、CI 一红一绿（繁体中文）。
+- [三个合成示例](examples/examples.md)：API 403、草稿消失、CI 一红一绿（繁体中文；另有[英文版](examples/examples.en.md)）。
 
 ## 手动安装
 
@@ -94,7 +94,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
 └── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
-examples/                          # 交互图解与合成示例
+examples/                          # 交互图解（五语）与示例
+CHANGELOG.md                       # 版本记录；推送 vX.Y.Z 标签会自动发布 Release
 scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）
 tests/                             # 验证脚本的回归测试
 ```
