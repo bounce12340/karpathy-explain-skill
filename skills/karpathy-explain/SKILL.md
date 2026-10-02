@@ -4,7 +4,7 @@ description: "Explain code, architecture, bugs, PRs, logs, and technical docs in
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -35,9 +35,15 @@ metadata:
 ## 依 ELI5 分層，不把工程師當小孩
 
 依對象調整語氣、類比與術語。工程師預設三層，讀者可停在任一層：
-1. **30 秒**：一句話、目標、生活類比、結果；類比後立即指出在哪裡失效。
+1. **30 秒**：一句話、目標、生活類比、結果；類比後立即指出在哪裡失效（規則見下）。
 2. **3 分鐘**：真實資料流、一次成功與一次失敗、最常見誤解。
 3. **深入**：原始碼位置、狀態/介面、邊界與取捨、可重現檢查。
+
+**比喻失效點要對照程式碼找**：
+- 失效點必須是程式碼裡的具體行為，附 `[已確認 路徑:行號]`，並引用該行的關鍵片段。
+- 優先找會讓讀者寫錯程式或做錯判斷的差異（權限、資料遺失、錯誤處理、邊界條件），不挑最容易講的差異。
+- 找不到對應的程式碼時，標成 `[推論]` 並說明缺什麼；不能把想像出來的差異寫成事實。
+- 沒有原始碼時，整個比喻與失效點都標 `[推論]`。
 
 技術詞首次出現用一句話定義；不說空泛的「這很簡單」。簡化句仍須為真，不能省略授權、隱私或風險。未量測不得宣稱節省多少時間。
 

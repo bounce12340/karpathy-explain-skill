@@ -22,7 +22,7 @@ The [`skills` CLI](https://github.com/vercel-labs/skills) asks which agents to i
 
 | Layer | You get |
 |---|---|
-| ⏱ 30 seconds | One sentence, an everyday analogy, and **where the analogy breaks** |
+| ⏱ 30 seconds | One sentence, an everyday analogy, and **where the analogy breaks**, checked against a line of code |
 | ⏱ 3 minutes | The real data flow: success path, failure path, common misconception |
 | 🔍 Deep dive | Files and lines to read, boundaries and trade-offs, how to verify |
 

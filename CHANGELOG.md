@@ -2,6 +2,11 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
+## 1.3.1 — 2026-10-03
+
+- Where an analogy breaks must now be checked against the code: cite the specific behavior with `[confirmed path:line]` and quote the key part of that line. Prefer differences that would lead a reader to write wrong code (authorization, data loss, error handling, edge cases). If no matching code is found, mark it `[inferred]`.
+- Reader self-check adds a sixth question: does the analogy's break point map to a line of code?
+
 ## 1.3.0 — 2026-10-02
 
 - Writing rules adapted from ASD-STE100: active voice, one word one meaning, one topic per paragraph, one positive question per line, no dropped sentence parts, short descriptive sentences. Details and good/bad examples in [references/writing-rules.md](skills/karpathy-explain/references/writing-rules.md).
