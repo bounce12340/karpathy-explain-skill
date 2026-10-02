@@ -2,7 +2,7 @@
 
 > 以下都是**合成情境**，用來展示技能的輸出樣式；不是任何真實專案的調查結論，因此沒有可引用的檔案與行號，結論都應視為 `[推論]`。實際使用時，技能會先讀來源，再把結論接回原始檔案、行號與測試。
 >
-> 想看真實對象、行號由 CI 自動檢查的版本，請看 [real-walkthrough.md](real-walkthrough.md)（英文）。
+> 想看真實對象、行號由 CI 自動檢查的版本，請看 [real-walkthrough.md](real-walkthrough.md)（英文）。英文版：[examples.en.md](examples.en.md)。
 
 ## 範例一：新工程師接手 API 的 403
 

@@ -1,0 +1,41 @@
+name: release
+
+# Publishes a GitHub Release when a version tag is pushed (e.g. v1.2.1).
+# The tag must match metadata.version in SKILL.md, and validation must pass.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and test
+        run: |
+          python3 scripts/validate.py
+          python3 -m unittest discover -s tests
+      - name: Check tag matches SKILL.md version
+        run: |
+          version=$(grep -E '^\s+version:' skills/karpathy-explain/SKILL.md | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != SKILL.md version $version"; exit 1; }
+      - name: Package the skill
+        run: |
+          mkdir -p dist
+          (cd skills && zip -r ../dist/karpathy-explain-$GITHUB_REF_NAME.zip karpathy-explain)
+          (cd dist && sha256sum *.zip > SHA256SUMS.txt)
+      - name: Release notes from CHANGELOG
+        run: |
+          v=${GITHUB_REF_NAME#v}
+          awk -v v="$v" '$0 ~ "^## "v" " {f=1; next} /^## / && f {exit} f' CHANGELOG.md > notes.md
+          test -s notes.md
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag

@@ -4,7 +4,7 @@ description: "Explain code, architecture, bugs, PRs, logs, and technical docs in
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
