@@ -34,6 +34,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 文章、Mermaid 図、自己完結型のインタラクティブ HTML から最小限で効果的な形式を選び、動画の絵コンテは依頼された場合のみ作成します。**クイックモード**では 30 秒の要約、次に見る場所、未確認事項だけを返します。
 
+**ASD-STE100 を基にした文章ルール**で文章を平易に保ちます：誰が何をしたかを書く、一語一義、一段落一トピック、一行に肯定形の質問を一つ、文の要素を省かない、文を短く。10 の実際のセッションにある 218 件の回答を分析したもので、各ルールは実際の混乱に対応しています。STE への準拠ではなく翻案です。
+
 用途：見知らぬコードの引き継ぎ、AI が生成した PR のレビュー、長いエラーログの読解、モジュールの引き継ぎ。
 
 ## 試す
@@ -93,7 +95,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 ```text
 skills/karpathy-explain/
 ├── SKILL.md                       # スキル本体（指示文のみ）
-└── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
+├── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
+└── references/writing-rules.md     # ASD-STE100 を基にした文章ルール
 examples/                          # インタラクティブ図解（5 言語）と例
 CHANGELOG.md                       # 変更履歴。vX.Y.Z タグで Release を自動公開
 scripts/validate.py                # 形式・リンク・根拠アンカー・機密情報チェック（CI）

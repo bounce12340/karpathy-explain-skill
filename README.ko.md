@@ -34,6 +34,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 글, Mermaid 다이어그램, 독립 실행형 인터랙티브 HTML 중 가장 가벼운 유효한 형식을 고르며, 영상 스토리보드는 요청할 때만 만듭니다. **빠른 모드**는 30초 요약, 다음에 볼 곳, 미확인 사항만 제공합니다.
 
+**ASD-STE100을 바탕으로 한 작성 규칙**으로 글을 쉽게 유지합니다: 누가 무엇을 했는지 쓰기, 한 단어 한 의미, 한 문단 한 주제, 한 줄에 긍정 질문 하나, 문장 성분 생략하지 않기, 짧은 문장. 실제 세션 10개의 답변 218개를 분석해 만들었으며, 각 규칙은 실제 혼란 사례에 대응합니다. STE 준수가 아니라 각색입니다.
+
 활용: 낯선 코드 인수, AI가 생성한 PR 리뷰, 긴 에러 로그 읽기, 모듈 인계.
 
 ## 사용해 보기
@@ -93,7 +95,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 ```text
 skills/karpathy-explain/
 ├── SKILL.md                       # 스킬 본체(지침만 포함)
-└── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
+├── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
+└── references/writing-rules.md     # ASD-STE100을 바탕으로 한 작성 규칙
 examples/                          # 인터랙티브 다이어그램(5개 언어)과 예시
 CHANGELOG.md                       # 변경 이력. vX.Y.Z 태그를 푸시하면 Release 자동 게시
 scripts/validate.py                # 형식·링크·근거 앵커·비밀 정보 검사(CI)

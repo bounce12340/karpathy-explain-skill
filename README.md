@@ -34,6 +34,8 @@ Anchors like `[confirmed path:line]` are machine-checkable: `scripts/validate.py
 
 It picks the lightest format that works — text, Mermaid diagram, self-contained interactive HTML, or a video storyboard only when you ask for one. A **quick mode** returns just the 30-second summary, where to look next, and what's unverified.
 
+**Writing rules adapted from ASD-STE100** keep the text plain: say who did what, one word per meaning, one topic per paragraph, one positive question per line, no dropped sentence parts, short sentences. They come from analyzing 218 replies in 10 real sessions; each rule maps to an observed point of confusion. This is an adaptation, not STE compliance.
+
 Good for: onboarding onto unfamiliar code, reviewing AI-generated PRs, reading long error logs, and handing over modules.
 
 ## Try it
@@ -93,7 +95,8 @@ Restart the agent if the skill does not appear. Any other Agent Skills–compati
 ```text
 skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
-└── references/output-template.md  # response skeleton, evidence tags, Mermaid template
+├── references/output-template.md  # response skeleton, evidence tags, Mermaid template
+└── references/writing-rules.md     # writing rules adapted from ASD-STE100
 examples/                          # interactive diagram (5 languages) + examples
 CHANGELOG.md                       # version history; tags vX.Y.Z publish a Release
 scripts/validate.py                # spec, links, evidence anchors, secrets (CI)
