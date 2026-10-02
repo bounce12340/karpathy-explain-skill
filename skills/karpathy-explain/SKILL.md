@@ -4,7 +4,7 @@ description: "Explain code, architecture, bugs, PRs, logs, and technical docs in
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -56,6 +56,7 @@ metadata:
 4. **一句一個問題，用肯定問句**：需要讀者決定時用編號問題；不用「不是…嗎？」。
 5. **不省略句子成分**：狀態寫成完整句子，分清「還沒做」與「刻意不做」。
 6. **描述句短**：英文不超過 25 詞（STE 規定）；中文約 40 字（經驗值）。
+7. **步驟用編號清單**：操作步驟一步一行，英文指示句不超過 20 詞。描述與指示分開寫，不混在同一段。
 
 這是改編，不是 STE 合規；STE 受控字典只適用英文，不套用在中文回覆。
 
@@ -68,8 +69,8 @@ metadata:
 | 條件 | 產物 | 要求 |
 |---|---|---|
 | 短問題／需要快讀 | 簡明文字 | 先結論、再例子、再風險／下一步；依上方寫作規則，**不**宣稱符合 ASD-STE100 正式規範 |
-| 跨兩個以上元件／有分支 | 圖解 | 優先 Mermaid（模板見 references）；成功與失敗路徑都畫，推論用虛線；附等價純文字 |
-| 需要切換情境或展開層級 | 自包含 HTML | 單一檔案、無外部 CDN；手機可讀、鍵盤可用、可見 focus、尊重 reduced-motion |
+| 跨兩個以上元件／有分支，或流程、結構超過 3 個步驟或部分 | 圖解 | 能渲染 Mermaid 的環境用 Mermaid（模板見 references）；終端機等無法渲染的環境用 ASCII 圖（範例見 references）。成功與失敗路徑都畫，推論用虛線或標 `[推論]`；附等價純文字 |
+| 需要切換情境或展開層級，或使用者說「用 HTML 解釋」 | 自包含 HTML | 使用者說「用 HTML 解釋」就直接把解說轉成單一檔案的互動頁，不再詢問。單一檔案、無外部 CDN；手機可讀、鍵盤可用、可見 focus、尊重 reduced-motion |
 | 有時間軸／空間過程，且使用者明確要影片 | 分鏡 → 可播放檔 | 先確認旁白來源、授權、成本、長度；沒有工具或 API key 就只交分鏡，不假裝已生成。不仿製他人獨有的視覺風格或聲音 |
 
 選最便宜而能完成理解任務的形式。做完實際預覽；圖或網頁若沒有增加資訊，退回文字。
