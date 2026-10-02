@@ -34,6 +34,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 它会选择够用的最简单形式：文字、Mermaid 图、自包含交互 HTML；只有你要求时才做视频分镜。**快速模式**只给 30 秒摘要、下一步看哪里、哪些还没确认。
 
+**改编自 ASD-STE100 的写作规则**让文字更直白：说出谁做了什么、一词一义、一段一个主题、一句一个肯定问句、不省略句子成分、句子要短。这些规则来自分析 10 个真实会话的 218 条回复，每条都对应实际的困惑。这是改编，不是 STE 合规。
+
 适合：接手陌生代码、审查 AI 生成的 PR、阅读很长的错误日志、交接模块。
 
 ## 试用
@@ -93,7 +95,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 ```text
 skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
-└── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
+├── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
+└── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
 examples/                          # 交互图解（五语）与示例
 CHANGELOG.md                       # 版本记录；推送 vX.Y.Z 标签会自动发布 Release
 scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）
