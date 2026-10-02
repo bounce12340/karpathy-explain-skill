@@ -115,7 +115,7 @@ python3 -m unittest discover -s tests
 
 ## 状态与限制
 
-- 安装路径依据各家官方文档编写；CI 会验证 `npx skills add . --list` 能找到技能。尚未在每家 agent 实机测试，欢迎反馈问题。
+- 安装路径依据各家官方文档编写；CI 会验证 `npx skills add . --list` 能找到技能。隔离 iSH/aarch64 使用 DeepSeek 兼容服务的实测结果：Claude Code **v1.3.0 通过**（调用 Skill 工具、读取源码并完成快速讲解；较新版本未重测）；Codex CLI 0.160.0 **v1.3.1 受阻**（技能安装成功，但代理与直接 API 均无法完成模型回合，没有成功使用技能的证据）。Hermes Agent 按用户要求跳过。
 - 它不会让你不用读代码，而是告诉你**先读哪里**、**哪些还是猜的**。
 
 ## 许可

@@ -115,7 +115,7 @@ python3 -m unittest discover -s tests
 
 ## 현황과 한계
 
-- 설치 경로는 각 agent의 공식 문서를 따랐으며, CI에서 `npx skills add . --list`가 스킬을 찾는지 검증합니다. 모든 agent에서 직접 테스트하지는 않았습니다. 이슈를 환영합니다.
+- 설치 경로는 각 agent의 공식 문서를 따르며 CI에서 `npx skills add . --list`를 검증합니다. 분리된 iSH/aarch64 및 DeepSeek 호환 서비스에서의 실기 결과: Claude Code는 **v1.3.0 PASS**(Skill 도구 호출, 소스 읽기, 빠른 설명 생성; 후속 버전은 재검증하지 않음). Codex CLI 0.160.0은 **v1.3.1 BLOCKED**(스킬 설치는 성공했지만 프록시와 직접 API 모두 모델 응답을 끝내지 못해 스킬 사용 완료 증거 없음). Hermes Agent는 사용자 요청에 따라 건너뛰었습니다.
 - 코드를 읽지 않아도 되게 해 주지는 않습니다. **어디부터 읽어야 하는지**, **무엇이 아직 추측인지** 알려 줍니다.
 
 ## 라이선스
