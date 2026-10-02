@@ -30,6 +30,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 `[已确认 src/auth.ts:42]` · `[实测]` · `[推断]` · `[未知]`
 
+`[已确认 路径:行号]` 这类锚点可由机器检查：文件或行号不存在时，`scripts/validate.py` 会失败。锚点只证明那一行存在，不证明它仍支持该结论。
+
 它会选择够用的最简单形式：文字、Mermaid 图、自包含交互 HTML；只有你要求时才做视频分镜。**快速模式**只给 30 秒摘要、下一步看哪里、哪些还没确认。
 
 适合：接手陌生代码、审查 AI 生成的 PR、阅读很长的错误日志、交接模块。
@@ -48,7 +50,11 @@ npx skills add bounce12340/karpathy-explain-skill
 
 技能会用你的语言回复。没有提供来源时，会标注为假设示例，而非经核实的结论。
 
-参见[交互功能图解](examples/index.html)和[三个合成示例](examples/examples.md)（繁体中文）。
+**示例**
+
+- [在线交互图解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html)：直接在浏览器打开（繁体中文）。
+- [真实演练](examples/real-walkthrough.md)：把技能用在本仓库的验证脚本上，每个行号都由 CI 自动检查（英文）。
+- [三个合成示例](examples/examples.md)：API 403、草稿消失、CI 一红一绿（繁体中文）。
 
 ## 手动安装
 
@@ -89,10 +95,16 @@ skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
 └── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
 examples/                          # 交互图解与合成示例
-scripts/validate.py                # 格式、链接、密钥检查（CI 会运行）
+scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）
+tests/                             # 验证脚本的回归测试
 ```
 
-提交 PR 前请运行 `python3 scripts/validate.py`。
+提交 PR 前请运行：
+
+```bash
+python3 scripts/validate.py
+python3 -m unittest discover -s tests
+```
 
 ## 状态与限制
 

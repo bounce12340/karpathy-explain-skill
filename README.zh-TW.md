@@ -30,6 +30,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 `[已確認 src/auth.ts:42]` · `[實測]` · `[推論]` · `[未知]`
 
+`[已確認 路徑:行號]` 這種錨點可由機器檢查：檔案或行號不存在時，`scripts/validate.py` 會失敗。錨點只證明那一行存在，不證明它仍支持該結論。
+
 它會選夠用的最簡單形式：文字、Mermaid 圖、自包含互動 HTML；只有你要求時才做影片分鏡。**快速模式**只給 30 秒摘要、下一步看哪裡、哪些還沒確認。
 
 適合：接手陌生程式、審查 AI 產生的 PR、讀很長的錯誤 log、交接模組。
@@ -48,7 +50,11 @@ npx skills add bounce12340/karpathy-explain-skill
 
 技能會用你的語言回覆。沒有提供來源時，會標明是假設示範，而非經查證的結論。
 
-參考[互動功能圖解](examples/index.html)與[三個合成範例](examples/examples.md)。
+**範例**
+
+- [線上互動圖解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html)：直接在瀏覽器開啟。
+- [真實演練](examples/real-walkthrough.md)：把技能套用在本 repo 的驗證腳本上，每個行號都由 CI 自動檢查（英文）。
+- [三個合成範例](examples/examples.md)：API 403、草稿消失、CI 一紅一綠。
 
 ## 手動安裝
 
@@ -89,10 +95,16 @@ skills/karpathy-explain/
 ├── SKILL.md                       # 技能本體（純指示文字）
 └── references/output-template.md  # 回覆骨架、證據標記、Mermaid 模板
 examples/                          # 互動圖解與合成範例
-scripts/validate.py                # 格式、連結、機密檢查（CI 會跑）
+scripts/validate.py                # 格式、連結、證據錨點、機密檢查（CI 會跑）
+tests/                             # 驗證腳本的回歸測試
 ```
 
-送 PR 前請執行 `python3 scripts/validate.py`。
+送 PR 前請執行：
+
+```bash
+python3 scripts/validate.py
+python3 -m unittest discover -s tests
+```
 
 ## 狀態與限制
 

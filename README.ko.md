@@ -30,6 +30,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 `[확인됨 src/auth.ts:42]` · `[테스트됨]` · `[추론]` · `[미확인]`
 
+`[확인됨 경로:줄]` 같은 앵커는 기계로 검사할 수 있습니다. 파일이나 줄이 없으면 `scripts/validate.py`가 실패합니다. 앵커는 그 줄이 존재함을 증명할 뿐, 여전히 주장을 뒷받침하는지는 보장하지 않습니다.
+
 글, Mermaid 다이어그램, 독립 실행형 인터랙티브 HTML 중 가장 가벼운 유효한 형식을 고르며, 영상 스토리보드는 요청할 때만 만듭니다. **빠른 모드**는 30초 요약, 다음에 볼 곳, 미확인 사항만 제공합니다.
 
 활용: 낯선 코드 인수, AI가 생성한 PR 리뷰, 긴 에러 로그 읽기, 모듈 인계.
@@ -48,7 +50,11 @@ karpathy-explain 빠른 모드로: 이 PR은 어떤 동작을 바꾸고, 무엇�
 
 스킬은 사용자의 언어로 답합니다. 소스가 없으면 검증된 설명이 아니라 가상의 예시임을 표시합니다.
 
-[인터랙티브 기능 다이어그램](examples/index.html)과 [세 가지 합성 예시](examples/examples.md)(번체 중국어)도 참고하세요.
+**예시**
+
+- [온라인 인터랙티브 다이어그램](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html): 브라우저에서 바로 열립니다(번체 중국어).
+- [실제 워크스루](examples/real-walkthrough.md): 이 저장소의 검증 스크립트에 스킬을 적용한 예시. 모든 줄 번호를 CI가 자동 검사합니다(영어).
+- [세 가지 합성 예시](examples/examples.md): API 403, 사라지는 초안, 엇갈린 CI 결과(번체 중국어).
 
 ## 수동 설치
 
@@ -89,10 +95,16 @@ skills/karpathy-explain/
 ├── SKILL.md                       # 스킬 본체(지침만 포함)
 └── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
 examples/                          # 인터랙티브 다이어그램과 합성 예시
-scripts/validate.py                # 형식·링크·비밀 정보 검사(CI에서 실행)
+scripts/validate.py                # 형식·링크·근거 앵커·비밀 정보 검사(CI)
+tests/                             # 검증 스크립트 회귀 테스트
 ```
 
-PR을 열기 전에 `python3 scripts/validate.py`를 실행하세요.
+PR을 열기 전에 실행하세요:
+
+```bash
+python3 scripts/validate.py
+python3 -m unittest discover -s tests
+```
 
 ## 현황과 한계
 

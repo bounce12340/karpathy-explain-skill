@@ -4,7 +4,7 @@ description: "Explain code, architecture, bugs, PRs, logs, and technical docs in
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -60,7 +60,7 @@ metadata:
 
 ## 交付前自我驗收
 
-讀者應能回答：資料從哪裡來？成功時去哪裡？失敗時怎麼辦？哪些還沒確認？要修改先看哪裡？任一題答不出或沒有證據標記，就補上或明說未知。示範資料一律標註為合成。
+讀者應能回答：資料從哪裡來？成功時去哪裡？失敗時怎麼辦？哪些還沒確認？要修改先看哪裡？任一題答不出或沒有證據標記，就補上或明說未知。示範資料一律標註為合成。引用行號時用可檢查的錨點格式 `[confirmed 路徑:行號]`，並先重新讀一次該行確認內容沒變。
 
 ## 範例請求
 

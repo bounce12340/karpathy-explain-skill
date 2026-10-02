@@ -30,6 +30,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 `[確認済み src/auth.ts:42]` · `[テスト済み]` · `[推測]` · `[不明]`
 
+`[確認済み パス:行]` のようなアンカーは機械的に検証できます。ファイルや行が存在しなければ `scripts/validate.py` が失敗します。アンカーはその行が存在することを示すだけで、主張を今も裏付けているとは限りません。
+
 文章、Mermaid 図、自己完結型のインタラクティブ HTML から最小限で効果的な形式を選び、動画の絵コンテは依頼された場合のみ作成します。**クイックモード**では 30 秒の要約、次に見る場所、未確認事項だけを返します。
 
 用途：見知らぬコードの引き継ぎ、AI が生成した PR のレビュー、長いエラーログの読解、モジュールの引き継ぎ。
@@ -48,7 +50,11 @@ karpathy-explain のクイックモードで：この PR はどんな挙動を�
 
 スキルはあなたの言語で回答します。ソースがない場合は、検証済みの説明ではなく仮の例であることを明示します。
 
-[インタラクティブな機能図](examples/index.html)と[3 つの合成例](examples/examples.md)（繁体字中国語）もご覧ください。
+**例**
+
+- [オンラインのインタラクティブ図解](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html)：ブラウザで直接開けます（繁体字中国語）。
+- [実例ウォークスルー](examples/real-walkthrough.md)：このリポジトリの検証スクリプトにスキルを適用した例。行番号はすべて CI で自動チェックされます（英語）。
+- [3 つの合成例](examples/examples.md)：API 403、消える下書き、CI の結果不一致（繁体字中国語）。
 
 ## 手動インストール
 
@@ -89,10 +95,16 @@ skills/karpathy-explain/
 ├── SKILL.md                       # スキル本体（指示文のみ）
 └── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
 examples/                          # インタラクティブ図解と合成例
-scripts/validate.py                # 形式・リンク・機密情報チェック（CI で実行）
+scripts/validate.py                # 形式・リンク・根拠アンカー・機密情報チェック（CI）
+tests/                             # 検証スクリプトの回帰テスト
 ```
 
-PR を出す前に `python3 scripts/validate.py` を実行してください。
+PR を出す前に実行してください：
+
+```bash
+python3 scripts/validate.py
+python3 -m unittest discover -s tests
+```
 
 ## 現状と制限
 

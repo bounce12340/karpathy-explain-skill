@@ -30,6 +30,8 @@ Every important claim carries an **evidence tag** so you know what to trust:
 
 `[confirmed src/auth.ts:42]` · `[tested]` · `[inferred]` · `[unknown]`
 
+Anchors like `[confirmed path:line]` are machine-checkable: `scripts/validate.py` fails if the file or line does not exist. A valid anchor proves the line exists, not that it still supports the claim.
+
 It picks the lightest format that works — text, Mermaid diagram, self-contained interactive HTML, or a video storyboard only when you ask for one. A **quick mode** returns just the 30-second summary, where to look next, and what's unverified.
 
 Good for: onboarding onto unfamiliar code, reviewing AI-generated PRs, reading long error logs, and handing over modules.
@@ -48,7 +50,11 @@ Use karpathy-explain in quick mode: what behavior does this PR change, and what'
 
 The skill replies in your language. Without source material, it labels the answer as a hypothetical example rather than a verified explanation.
 
-See the [interactive feature diagram](examples/index.html) and [three synthetic examples](examples/examples.md) (Traditional Chinese).
+**Examples**
+
+- [Live interactive diagram](https://bounce12340.github.io/karpathy-explain-skill/examples/index.html) — opens in the browser (Traditional Chinese).
+- [Real walkthrough](examples/real-walkthrough.md) — the skill applied to this repo's own validator. Every line reference is checked by CI.
+- [Three synthetic examples](examples/examples.md) — API 403, disappearing drafts, mixed CI results (Traditional Chinese).
 
 ## Manual install
 
@@ -89,10 +95,16 @@ skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
 └── references/output-template.md  # response skeleton, evidence tags, Mermaid template
 examples/                          # interactive diagram + synthetic examples
-scripts/validate.py                # spec, link, and secret checks (run in CI)
+scripts/validate.py                # spec, links, evidence anchors, secrets (CI)
+tests/                             # validator regression tests
 ```
 
-Run `python3 scripts/validate.py` before opening a PR.
+Before opening a PR:
+
+```bash
+python3 scripts/validate.py
+python3 -m unittest discover -s tests
+```
 
 ## Status and limits
 
