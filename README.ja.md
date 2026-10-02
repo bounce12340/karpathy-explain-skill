@@ -38,6 +38,8 @@ npx skills add bounce12340/karpathy-explain-skill
 
 用途：見知らぬコードの引き継ぎ、AI が生成した PR のレビュー、長いエラーログの読解、モジュールの引き継ぎ。
 
+**自然な文章への最終チェック（[Humanizer-zh](https://github.com/bounce12340/Humanizer-zh) を参考）**：コードを確認してから、理解を妨げる空疎な前置き、重複、型にはまった表現だけを直します。根拠タグ、不確実性、必要な用語は残します。別スキルの導入は任意です。AI 文書検出器ではなく、検出回避も保証しません。
+
 ## 試す
 
 ```text
@@ -96,7 +98,8 @@ hermes skills install bounce12340/karpathy-explain-skill/skills/karpathy-explain
 skills/karpathy-explain/
 ├── SKILL.md                       # スキル本体（指示文のみ）
 ├── references/output-template.md  # 回答の骨組み、根拠タグ、Mermaid テンプレート
-└── references/writing-rules.md     # ASD-STE100 を基にした文章ルール
+├── references/writing-rules.md     # ASD-STE100 を基にした文章ルール
+└── references/natural-writing.md   # Humanizer-zh を参考にした自然な文章の確認
 examples/                          # インタラクティブ図解（5 言語）と例
 CHANGELOG.md                       # 変更履歴。vX.Y.Z タグで Release を自動公開
 scripts/validate.py                # 形式・リンク・根拠アンカー・機密情報チェック（CI）
@@ -112,7 +115,7 @@ python3 -m unittest discover -s tests
 
 ## 現状と制限
 
-- インストール手順は各 agent の公式ドキュメントに基づいています。CI で `npx skills add . --list` がスキルを検出できることを確認しています。すべての agent での実機テストはまだです。Issue を歓迎します。
+- インストール手順は各 agent の公式ドキュメントに基づき、CI で `npx skills add . --list` を確認します。隔離された iSH/aarch64 と DeepSeek 互換サービスでの実機結果：Claude Code は **v1.3.0 で PASS**（Skill ツールを呼び出し、ソースを読み、短い解説を生成。後続版は未再テスト）。Codex CLI 0.160.0 は **v1.3.1 で BLOCKED**（スキルは導入できたものの、プロキシと直接 API の両方でモデルの応答が完了せず、スキルを使えた証拠なし）。Hermes Agent はユーザーの指示で省略しました。
 - コードを読む必要はなくなりません。**どこから読むべきか**、**何がまだ推測か**を教えてくれます。
 
 ## ライセンス
