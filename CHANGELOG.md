@@ -6,7 +6,7 @@ All notable changes to this skill. Versions match `metadata.version` in [SKILL.m
 
 - Interactive demo is now available in five languages (English, 繁體中文, 日本語, 한국어, 简体中文), with a language switcher, `?lang=` links, and browser-language detection.
 - English version of the three synthetic examples: [examples/examples.en.md](examples/examples.en.md).
-- Hands-on agent test results recorded in the README status section.
+- Tag-driven release workflow: pushing `vX.Y.Z` validates, checks the version, and attaches a zipped skill with `SHA256SUMS.txt`.
 
 ## 1.2.0 — 2026-10-02
 
