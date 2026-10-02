@@ -32,7 +32,7 @@ Every important claim carries an **evidence tag** so you know what to trust:
 
 Anchors like `[confirmed path:line]` are machine-checkable: `scripts/validate.py` fails if the file or line does not exist. A valid anchor proves the line exists, not that it still supports the claim.
 
-It picks the lightest format that works — text, Mermaid diagram, self-contained interactive HTML, or a video storyboard only when you ask for one. A **quick mode** returns just the 30-second summary, where to look next, and what's unverified.
+It picks the lightest format that works — text, a Mermaid diagram (or an ASCII diagram in terminals that cannot render Mermaid), self-contained interactive HTML, or a video storyboard only when you ask for one. Say "explain in HTML" to get a single-file interactive page directly. A **quick mode** returns just the 30-second summary, where to look next, and what's unverified.
 
 **Writing rules adapted from ASD-STE100** keep the text plain: say who did what, one word per meaning, one topic per paragraph, one positive question per line, no dropped sentence parts, short sentences. They come from analyzing 218 replies in 10 real sessions; each rule maps to an observed point of confusion. This is an adaptation, not STE compliance.
 

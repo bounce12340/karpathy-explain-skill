@@ -2,6 +2,12 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
+## 1.3.2 — 2026-10-03
+
+- Writing rule 7: put steps in a numbered list, one instruction per line (20 English words max), and keep instructions apart from descriptions.
+- Diagrams: use an ASCII diagram where Mermaid does not render (terminals such as Claude Code and Codex). Also draw one when a process or structure has more than 3 steps or parts. Template added to `references/output-template.md`.
+- "Explain in HTML" (「用 HTML 解釋」) is now an explicit trigger: convert the explanation into a single-file interactive HTML page without asking.
+
 ## 1.3.1 — 2026-10-03
 
 - Where an analogy breaks must now be checked against the code: cite the specific behavior with `[confirmed path:line]` and quote the key part of that line. Prefer differences that would lead a reader to write wrong code (authorization, data loss, error handling, edge cases). If no matching code is found, mark it `[inferred]`.
