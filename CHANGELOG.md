@@ -2,6 +2,14 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
+## 1.5.0 — 2026-10-05
+
+Three changes adapted from [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) (MIT). Only the ideas were adapted; no code or text was copied.
+
+- **When to draw.** Draw a diagram when there are 3+ related concepts, a flow with branches or several participants, a comparison across 3+ dimensions, a hierarchy, or a timeline. Use plain text for answers clear in about 150 words, commands to copy and run, plain code changes, or a request for plain text. The skill description now states these limits too.
+- **Pick the diagram type by information type.** Flowchart for calls and branches, sequence diagram for messages over time, state diagram for state changes, tree for hierarchies, timeline for history, and a table for multi-way comparisons. One diagram answers one question.
+- **Change only what was asked.** When editing an existing diagram or page, replace only the requested section and keep the rest, including evidence tags and line references. If the section is not found, do not change the file.
+
 ## 1.4.1 — 2026-10-03
 
 - Writing rule 7: put steps in a numbered list, one instruction per line (20 English words max), and keep instructions apart from descriptions.
