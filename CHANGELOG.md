@@ -2,6 +2,12 @@
 
 All notable changes to this skill. Versions match `metadata.version` in [SKILL.md](skills/karpathy-explain/SKILL.md).
 
+## 1.6.0 — 2026-10-05
+
+- Added `references/html-layout.md`: 15 layout checks for self-contained HTML explainer pages, covering hierarchy, spacing, line length, baseline alignment, contrast, non-color cues, borders, and empty states. Paraphrased from *Refactoring UI* (Adam Wathan, Steve Schoger) via a public summary on X by @longhaiqwe123. No book text or images were copied.
+- Evidence rules still come first: layout changes must not remove evidence tags, line references, unknowns, or risk notes.
+- The interactive demo now follows the new line-length check: paragraphs, lists, and labels are capped at about 34em on wide screens (previously up to 55em). Mobile layout is unchanged.
+
 ## 1.5.0 — 2026-10-05
 
 Three changes adapted from [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) (MIT). Only the ideas were adapted; no code or text was copied.

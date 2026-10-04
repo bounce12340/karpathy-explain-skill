@@ -99,7 +99,8 @@ skills/karpathy-explain/
 ├── SKILL.md                       # the skill (instruction-only)
 ├── references/output-template.md  # response skeleton, evidence tags, Mermaid template
 ├── references/writing-rules.md     # writing rules adapted from ASD-STE100
-└── references/natural-writing.md   # natural-writing pass inspired by Humanizer-zh
+├── references/natural-writing.md   # natural-writing pass inspired by Humanizer-zh
+└── references/html-layout.md       # HTML explainer layout checks (from Refactoring UI)
 examples/                          # interactive diagram (5 languages) + examples
 CHANGELOG.md                       # version history; tags vX.Y.Z publish a Release
 scripts/validate.py                # spec, links, evidence anchors, secrets (CI)
