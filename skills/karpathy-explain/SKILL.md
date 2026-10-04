@@ -1,10 +1,10 @@
 ---
 name: karpathy-explain
-description: "Explain code, architecture, bugs, PRs, logs, and technical docs in layered, evidence-backed form (30-second ELI5 → data flow → source-level deep dive); choose text, diagram, interactive HTML, or video. Use for onboarding, unfamiliar code, AI-generated code reviews, Karpathy-style/ELI5 explanations, or a natural-language polish of engineering explanations without losing evidence. 把技術內容分層解說，或在不刪證據下潤飾工程說明、減少空話和模板語氣。"
+description: "Explain code, architecture, bugs, PRs, logs, and technical docs in layered, evidence-backed form (30-second ELI5 → data flow → source-level deep dive); choose text, diagram, interactive HTML, or video. Use for onboarding, unfamiliar code, AI-generated code reviews, Karpathy-style/ELI5 explanations, or a natural-language polish of engineering explanations without losing evidence. Draw a diagram for 3+ related concepts, branching flows, 3+-way comparisons, hierarchies, or timelines. Not for answers clear in ~150 words, commands to copy and run, or plain code changes. 把技術內容分層解說，或在不刪證據下潤飾工程說明；簡短問答與純指令不用。"
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.4.1"
+  version: "1.5.0"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -66,14 +66,42 @@ metadata:
 
 ## 選呈現形式（逐級增強，不必每次全做）
 
+**先判斷要不要出圖或網頁。** 符合任一條就出圖解；需要切換情境時才做網頁：
+- 有 3 個以上互相關聯的概念，讀者要看到它們的關係。
+- 有流程、協定、呼叫鏈或狀態轉換，尤其有分支或多個參與者。
+- 要比較 3 個以上的面向，或列出「能／不能」清單。
+- 有層級結構或時間演進。
+
+以下情況**不出圖**，用文字回答：約 150 字內講得清楚的問題、要複製執行的指令、純程式修改、使用者要求純文字。
+
 | 條件 | 產物 | 要求 |
 |---|---|---|
 | 短問題／需要快讀 | 簡明文字 | 先結論、再例子、再風險／下一步；依上方寫作規則，**不**宣稱符合 ASD-STE100 正式規範 |
-| 跨兩個以上元件／有分支，或流程、結構超過 3 個步驟或部分 | 圖解 | 能渲染 Mermaid 的環境用 Mermaid（模板見 references）；終端機等無法渲染的環境用 ASCII 圖（範例見 references）。成功與失敗路徑都畫，推論用虛線或標 `[推論]`；附等價純文字 |
+| 符合上方出圖條件 | 圖解 | 依下表選圖的種類。能渲染 Mermaid 的環境用 Mermaid（模板見 references）；終端機等無法渲染的環境用 ASCII 圖（範例見 references）。成功與失敗路徑都畫，推論用虛線或標 `[推論]`；附等價純文字 |
 | 需要切換情境或展開層級，或使用者說「用 HTML 解釋」 | 自包含 HTML | 使用者說「用 HTML 解釋」就直接把解說轉成單一檔案的互動頁，不再詢問。單一檔案、無外部 CDN；手機可讀、鍵盤可用、可見 focus、尊重 reduced-motion |
 | 有時間軸／空間過程，且使用者明確要影片 | 分鏡 → 可播放檔 | 先確認旁白來源、授權、成本、長度；沒有工具或 API key 就只交分鏡，不假裝已生成。不仿製他人獨有的視覺風格或聲音 |
 
+**依資訊類型選圖的種類：**
+
+| 資訊類型 | 圖的種類 | Mermaid 寫法 |
+|---|---|---|
+| 元件之間誰呼叫誰、架構、判斷分支 | 流程圖 | `flowchart` |
+| 參與者之間依時間傳遞的訊息（請求、回應、交握） | 時序圖 | `sequenceDiagram` |
+| 狀態如何轉換（草稿 → 送出 → 完成） | 狀態圖 | `stateDiagram-v2` |
+| 目錄、模組、分類的層級 | 樹狀圖 | ASCII 縮排樹；Mermaid 用 `flowchart TD` |
+| 版本演進、事件先後 | 時間線 | `timeline` |
+| 3 個以上面向的比較、能／不能清單 | 表格 | Markdown 表格，用 ✓ ✗ 標差異 |
+
+一張圖只回答一個問題。同一個解說需要兩種資訊時，畫兩張圖，不要把時序和層級塞進同一張。
+
 選最便宜而能完成理解任務的形式。做完實際預覽；圖或網頁若沒有增加資訊，退回文字。
+
+**修改既有的圖或網頁時，只改需要改的部分。** 使用者只要求改其中一段、一張圖或一個區塊時：
+1. 先讀取既有檔案，找到對應的段落。
+2. 只替換那一段，保留其他段落、樣式和互動行為。
+3. 找不到對應段落時，不要改檔案，先告訴使用者。
+
+不要整頁重寫。重寫會改掉使用者沒要求改的內容，也會讓已確認的證據標記和行號跟著變動。
 
 ## 常見情境的重點
 
