@@ -99,7 +99,8 @@ skills/karpathy-explain/
 ├── SKILL.md                       # 스킬 본체(지침만 포함)
 ├── references/output-template.md  # 답변 골격, 근거 태그, Mermaid 템플릿
 ├── references/writing-rules.md     # ASD-STE100을 바탕으로 한 작성 규칙
-└── references/natural-writing.md   # Humanizer-zh를 참고한 자연스러운 문장 점검
+├── references/natural-writing.md   # Humanizer-zh를 참고한 자연스러운 문장 점검
+└── references/html-layout.md       # HTML 설명 페이지 레이아웃 점검(Refactoring UI 참고)
 examples/                          # 인터랙티브 다이어그램(5개 언어)과 예시
 CHANGELOG.md                       # 변경 이력. vX.Y.Z 태그를 푸시하면 Release 자동 게시
 scripts/validate.py                # 형식·링크·근거 앵커·비밀 정보 검사(CI)

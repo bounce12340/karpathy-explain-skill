@@ -99,7 +99,8 @@ skills/karpathy-explain/
 ├── SKILL.md                       # 技能本体（纯指令文本）
 ├── references/output-template.md  # 回复骨架、证据标记、Mermaid 模板
 ├── references/writing-rules.md     # 改编自 ASD-STE100 的写作规则
-└── references/natural-writing.md   # 借鉴 Humanizer-zh 的自然文字检查
+├── references/natural-writing.md   # 借鉴 Humanizer-zh 的自然文字检查
+└── references/html-layout.md       # HTML 讲解页版面检查（改写自 Refactoring UI）
 examples/                          # 交互图解（五语）与示例
 CHANGELOG.md                       # 版本记录；推送 vX.Y.Z 标签会自动发布 Release
 scripts/validate.py                # 格式、链接、证据锚点、密钥检查（CI 会运行）

@@ -4,7 +4,7 @@ description: "Explain code, architecture, bugs, PRs, logs, and technical docs in
 license: MIT
 compatibility: "Instruction-only. No API key, package, or network required. Optional: web access for URLs; local video tools only if a video is explicitly requested."
 metadata:
-  version: "1.5.0"
+  version: "1.6.0"
   inspired-by: "https://x.com/karpathy/status/2105819303471976479"
 ---
 
@@ -78,7 +78,7 @@ metadata:
 |---|---|---|
 | 短問題／需要快讀 | 簡明文字 | 先結論、再例子、再風險／下一步；依上方寫作規則，**不**宣稱符合 ASD-STE100 正式規範 |
 | 符合上方出圖條件 | 圖解 | 依下表選圖的種類。能渲染 Mermaid 的環境用 Mermaid（模板見 references）；終端機等無法渲染的環境用 ASCII 圖（範例見 references）。成功與失敗路徑都畫，推論用虛線或標 `[推論]`；附等價純文字 |
-| 需要切換情境或展開層級，或使用者說「用 HTML 解釋」 | 自包含 HTML | 使用者說「用 HTML 解釋」就直接把解說轉成單一檔案的互動頁，不再詢問。單一檔案、無外部 CDN；手機可讀、鍵盤可用、可見 focus、尊重 reduced-motion |
+| 需要切換情境或展開層級，或使用者說「用 HTML 解釋」 | 自包含 HTML | 使用者說「用 HTML 解釋」就直接把解說轉成單一檔案的互動頁，不再詢問。單一檔案、無外部 CDN；手機可讀、鍵盤可用、可見 focus、尊重 reduced-motion。交付前依 [references/html-layout.md](references/html-layout.md) 檢查層級、間距、行長、對比與非顏色提示 |
 | 有時間軸／空間過程，且使用者明確要影片 | 分鏡 → 可播放檔 | 先確認旁白來源、授權、成本、長度；沒有工具或 API key 就只交分鏡，不假裝已生成。不仿製他人獨有的視覺風格或聲音 |
 
 **依資訊類型選圖的種類：**
